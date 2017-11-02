@@ -1,4 +1,7 @@
 ## ---- eval=FALSE---------------------------------------------------------
+#  install.packages("mapsapi")
+
+## ---- eval=FALSE---------------------------------------------------------
 #  install.packages("devtools")
 #  devtools::install_github("michaeldorman/mapsapi")
 
@@ -6,7 +9,7 @@
 library(mapsapi)
 
 ## ---- eval=FALSE---------------------------------------------------------
-#  doc = google_directions(
+#  doc = mp_directions(
 #    origin = c(34.81127, 31.89277),
 #    destination = "Haifa",
 #    alternatives = TRUE
@@ -14,10 +17,10 @@ library(mapsapi)
 
 ## ------------------------------------------------------------------------
 library(xml2)
-doc = as_xml_document(response_directions)
+doc = as_xml_document(response_directions_driving)
 
 ## ------------------------------------------------------------------------
-r = extract_routes(doc)
+r = mp_get_routes(doc)
 
 ## ------------------------------------------------------------------------
 r
@@ -26,26 +29,29 @@ r
 library(leaflet)
 pal = colorFactor(palette = "Dark2", domain = r$alternative_id)
 leaflet() %>% 
-  addProviderTiles(provider = providers$Stamen.TonerLite) %>% 
+  addProviderTiles("CartoDB.DarkMatter") %>%
   addPolylines(data = r, opacity = 1, weight = 7, color = ~pal(alternative_id))
 
 ## ------------------------------------------------------------------------
-seg = extract_segments(doc)
+seg = mp_get_segments(doc)
 
 ## ------------------------------------------------------------------------
 head(seg)
 
 ## ------------------------------------------------------------------------
-pal = colorFactor(palette = sample(colors(), length(unique(seg$segment_id))), domain = seg$segment_id)
+pal = colorFactor(
+  palette = sample(colors(), length(unique(seg$segment_id))), 
+  domain = seg$segment_id
+  )
 leaflet(seg) %>% 
-  addProviderTiles(provider = providers$Stamen.TonerLite) %>% 
+  addProviderTiles("CartoDB.DarkMatter") %>%
   addPolylines(opacity = 1, weight = 7, color = ~pal(segment_id), popup = ~instructions)
 
 ## ------------------------------------------------------------------------
 locations = c("Tel-Aviv", "Jerusalem", "Beer-Sheva")
 
 ## ---- eval = FALSE-------------------------------------------------------
-#  doc = google_matrix(
+#  doc = mp_matrix(
 #    origins = locations,
 #    destinations = locations
 #  )
@@ -54,8 +60,33 @@ locations = c("Tel-Aviv", "Jerusalem", "Beer-Sheva")
 doc = as_xml_document(response_matrix)
 
 ## ------------------------------------------------------------------------
-m = extract_matrix(doc, value = "distance_m")
+m = mp_get_matrix(doc, value = "distance_m")
 colnames(m) = locations
 rownames(m) = locations
 m
+
+## ---- eval=FALSE---------------------------------------------------------
+#  doc = mp_geocode(addresses = "Tel-Aviv")
+
+## ------------------------------------------------------------------------
+library(xml2)
+doc = list("Tel-Aviv" = as_xml_document(response_geocode))
+
+## ------------------------------------------------------------------------
+pnt = mp_get_points(doc)
+pnt
+
+## ------------------------------------------------------------------------
+leaflet() %>% 
+  addProviderTiles("CartoDB.DarkMatter") %>%
+  addCircleMarkers(data = pnt)
+
+## ------------------------------------------------------------------------
+bounds = mp_get_bounds(doc)
+bounds
+
+## ------------------------------------------------------------------------
+leaflet() %>% 
+  addProviderTiles("CartoDB.DarkMatter") %>%  
+  addPolygons(data = bounds)
 

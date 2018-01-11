@@ -9,3 +9,9 @@
 * Added input checks
 * Added arrival & departure time parameters
 
+# mapsapi 0.3.0
+
+* Added delay in 'mp_geocode' to avoid rate limit
+* Fixed index issue in 'mp_geocode'
+* Fixed 'mp_get_points' issue with multiple points
+

@@ -5,9 +5,10 @@
 #' @param key Google APIs key (optional)
 #' @return \code{list} of XML documents with Google Maps Geocoding API responses, one item per element in \code{addresses}
 #' @note \itemize{
-#' \item Use function \strong{\code{\link{mp_get_points}}} to extract \strong{locations} as \code{sf} point layer
-#' \item Use function \strong{\code{\link{mp_get_bounds}}} to extract \strong{location bounds} as \code{sf} polygonal layer
+#' \item Use function \code{\link{mp_get_points}} to extract \strong{locations} as \code{sf} point layer
+#' \item Use function \code{\link{mp_get_bounds}} to extract \strong{location bounds} as \code{sf} polygonal layer
 #' }
+#' @references \url{https://developers.google.com/maps/documentation/geocoding/intro}
 #' @export
 #' @encoding UTF-8
 #' @examples

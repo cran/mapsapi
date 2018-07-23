@@ -1,7 +1,7 @@
 Package: mapsapi
 Type: Package
 Title: 'sf'-Compatible Interface to 'Google Maps' APIs
-Version: 0.3.5
+Version: 0.3.7
 Authors@R: c(
     person("Michael", "Dorman", email = "dorman@post.bgu.ac.il", role = c("aut", "cre")),
     person("Tom", "Buckley", role = c("ctb")))
@@ -16,9 +16,9 @@ Suggests: knitr, rmarkdown, leaflet
 VignetteBuilder: knitr
 BugReports: https://github.com/michaeldorman/mapsapi/issues
 NeedsCompilation: no
-Packaged: 2018-03-12 11:51:58 UTC; michael
+Packaged: 2018-07-23 12:11:48 UTC; michael
 Author: Michael Dorman [aut, cre],
   Tom Buckley [ctb]
 Maintainer: Michael Dorman <dorman@post.bgu.ac.il>
 Repository: CRAN
-Date/Publication: 2018-03-12 12:00:49 UTC
+Date/Publication: 2018-07-23 12:20:03 UTC

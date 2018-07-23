@@ -24,8 +24,8 @@ Get geocoded coordinates using the Google Maps Geocoding API
 }
 \note{
 \itemize{
-\item Use function \strong{\code{\link{mp_get_points}}} to extract \strong{locations} as \code{sf} point layer
-\item Use function \strong{\code{\link{mp_get_bounds}}} to extract \strong{location bounds} as \code{sf} polygonal layer
+\item Use function \code{\link{mp_get_points}} to extract \strong{locations} as \code{sf} point layer
+\item Use function \code{\link{mp_get_bounds}} to extract \strong{location bounds} as \code{sf} polygonal layer
 }
 }
 \examples{
@@ -75,4 +75,7 @@ result = mp_geocode(addresses = rep("Winnetka", 3), bounds = list(b, NA, b), key
 mp_get_points(result)
 
 }
+}
+\references{
+\url{https://developers.google.com/maps/documentation/geocoding/intro}
 }

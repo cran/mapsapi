@@ -21,9 +21,21 @@
 * Added argument validation in 'mp_geocode'
 * Corrected typo when creating geometry column in 'mp_get_routes' and 'mp_get_segments'
 
-# mapsapi 0.3.7
+# mapsapi 0.3.7 (2018-07-23)
 
 * Minor updates in documentation
 * Added 'duration_in_traffic' option in 'mp_get_matrix'
 * 'mp_matrix' now returns 'NA' when there are zero results
+
+# mapsapi 0.3.9
+
+* Support for "waypoints" parameter in 'mp_directions' and 'ms_get_segments'
+* 'mp_routes' now returns empty LINESTRING when 'doc' contains no route alternatives ('ZERO_RESULTS')
+* Added 'quiet' parameter to 'mp_directions' and 'mp_matrix' to hide API from text key when necessary
+
+# To add
+
+* Add 'address type' (geocode accuracy) field for 'mp_get_points'
+* Get static map images (?)
+
 

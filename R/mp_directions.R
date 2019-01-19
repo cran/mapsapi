@@ -5,6 +5,12 @@
 #' \item{\code{matrix} with one row and two columns (lon, lat)}
 #' \item{\code{sf} or \code{sfc} point layer with one feature}
 #' }
+#' @param waypoints Waypoints, in one of the same formats as for \code{origins} but possibly with more than one location, i.e. \itemize{
+#' \item{\code{character} vector with addresses to be geocoded}
+#' \item{\code{numeric} vector of length two (lon, lat)}
+#' \item{\code{matrix} with two columns (lon, lat)}
+#' \item{\code{sf} or \code{sfc} point layer}
+#' }
 #' @param destination Destination, in one of the same formats as for \code{origins}
 #' @param mode Travel mode, one of: \code{"driving"} (default), \code{"transit"}, \code{"walking"}, \code{"bicycling"}
 #' @param arrival_time The desired time of arrival for transit directions, as \code{POSIXct}
@@ -13,6 +19,7 @@
 #' @param avoid \code{NULL} (default) or one of: \code{"tolls"}, \code{"highways"}, \code{"ferries"} or \code{"indoor"}
 #' @param region The region code, specified as a ccTLD ("top-level domain") two-character value (e.g. \code{"es"} for Spain) (optional)
 #' @param key Google APIs key (optional)
+#' @param quiet Logical; suppress printing URL for Google Maps API call (e.g. to hide API key)
 #' @return XML document with Google Maps Directions API response
 #' @note \itemize{
 #' \item Use function \code{\link{mp_get_routes}} to extract \code{sf} line layer where each feature is a \strong{route}
@@ -26,24 +33,33 @@
 #' doc = as_xml_document(response_directions_driving)
 #' r = mp_get_routes(doc)
 #' seg = mp_get_segments(doc)
+#'
 #' \dontrun{
+#'
+#' # Text file with API key
+#' key = readLines("~/key")
+#'
 #' # Using 'numeric' input
 #' doc = mp_directions(
 #'   origin = c(34.81127, 31.89277),
 #'   destination = c(34.781107, 32.085003),
-#'   alternatives = TRUE
+#'   alternatives = TRUE,
+#'   key = key
 #' )
+#'
 #' # Using 'character' and 'sf' input
-#' library(magrittr); library(sf)
+#' library(sf)
 #' doc = mp_directions(
 #'   origin = "Beer-Sheva",
 #'   destination = c(34.781107, 32.085003) %>% st_point %>% st_sfc(crs = 4326),
-#'   alternatives = TRUE
+#'   alternatives = TRUE,
+#'   key = key
 #' )
 #' }
 
 mp_directions = function(
   origin,
+  waypoints = NULL,
   destination,
   mode = c("driving", "transit", "walking", "bicycling"),
   arrival_time = NULL,
@@ -51,7 +67,8 @@ mp_directions = function(
   alternatives = FALSE,
   avoid = NULL,
   region = NULL,
-  key = NULL
+  key = NULL,
+  quiet = FALSE
   ) {
 
   # Checks
@@ -75,6 +92,16 @@ mp_directions = function(
     mode[1],
     "&alternatives=",
     tolower(alternatives))
+
+  # Add 'waypoints'
+  if(!is.null(waypoints)) {
+    waypoints = encode_locations(waypoints, single = FALSE)
+    url = paste0(
+      url,
+      "&waypoints=optimize:true|",
+      waypoints
+    )
+  }
 
   # Add 'arrival_time'
   if(!is.null(arrival_time)) {
@@ -122,7 +149,7 @@ mp_directions = function(
   }
 
   # Print URL
-  message(url)
+  if(!quiet) message(url)
 
   # Get response
   url = utils::URLencode(url)

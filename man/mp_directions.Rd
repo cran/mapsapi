@@ -4,9 +4,10 @@
 \alias{mp_directions}
 \title{Get directions from the Google Maps Directions API}
 \usage{
-mp_directions(origin, destination, mode = c("driving", "transit", "walking",
-  "bicycling"), arrival_time = NULL, departure_time = NULL,
-  alternatives = FALSE, avoid = NULL, region = NULL, key = NULL)
+mp_directions(origin, waypoints = NULL, destination,
+  mode = c("driving", "transit", "walking", "bicycling"),
+  arrival_time = NULL, departure_time = NULL, alternatives = FALSE,
+  avoid = NULL, region = NULL, key = NULL, quiet = FALSE)
 }
 \arguments{
 \item{origin}{Origin, as \itemize{
@@ -14,6 +15,13 @@ mp_directions(origin, destination, mode = c("driving", "transit", "walking",
 \item{\code{numeric} vector of length two (lon, lat)}
 \item{\code{matrix} with one row and two columns (lon, lat)}
 \item{\code{sf} or \code{sfc} point layer with one feature}
+}}
+
+\item{waypoints}{Waypoints, in one of the same formats as for \code{origins} but possibly with more than one location, i.e. \itemize{
+\item{\code{character} vector with addresses to be geocoded}
+\item{\code{numeric} vector of length two (lon, lat)}
+\item{\code{matrix} with two columns (lon, lat)}
+\item{\code{sf} or \code{sfc} point layer}
 }}
 
 \item{destination}{Destination, in one of the same formats as for \code{origins}}
@@ -31,6 +39,8 @@ mp_directions(origin, destination, mode = c("driving", "transit", "walking",
 \item{region}{The region code, specified as a ccTLD ("top-level domain") two-character value (e.g. \code{"es"} for Spain) (optional)}
 
 \item{key}{Google APIs key (optional)}
+
+\item{quiet}{Logical; suppress printing URL for Google Maps API call (e.g. to hide API key)}
 }
 \value{
 XML document with Google Maps Directions API response
@@ -50,19 +60,27 @@ library(xml2)
 doc = as_xml_document(response_directions_driving)
 r = mp_get_routes(doc)
 seg = mp_get_segments(doc)
+
 \dontrun{
+
+# Text file with API key
+key = readLines("~/key")
+
 # Using 'numeric' input
 doc = mp_directions(
   origin = c(34.81127, 31.89277),
   destination = c(34.781107, 32.085003),
-  alternatives = TRUE
+  alternatives = TRUE,
+  key = key
 )
+
 # Using 'character' and 'sf' input
-library(magrittr); library(sf)
+library(sf)
 doc = mp_directions(
   origin = "Beer-Sheva",
   destination = c(34.781107, 32.085003) \%>\% st_point \%>\% st_sfc(crs = 4326),
-  alternatives = TRUE
+  alternatives = TRUE,
+  key = key
 )
 }
 }

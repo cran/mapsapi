@@ -4,9 +4,9 @@
 \alias{mp_matrix}
 \title{Get distance matrix from the Google Maps Distance Matrix API}
 \usage{
-mp_matrix(origins, destinations, mode = c("driving", "transit", "walking",
-  "bicycling"), arrival_time = NULL, departure_time = NULL, avoid = NULL,
-  region = NULL, key = NULL)
+mp_matrix(origins, destinations, mode = c("driving", "transit",
+  "walking", "bicycling"), arrival_time = NULL, departure_time = NULL,
+  avoid = NULL, region = NULL, key = NULL, quiet = FALSE)
 }
 \arguments{
 \item{origins}{Origins, as \itemize{
@@ -29,6 +29,8 @@ mp_matrix(origins, destinations, mode = c("driving", "transit", "walking",
 \item{region}{The region code, specified as a ccTLD ("top-level domain") two-character value (e.g. \code{"es"} for Spain) (optional)}
 
 \item{key}{Google APIs key (optional)}
+
+\item{quiet}{Logical; suppress printing URL for Google Maps API call (e.g. to hide API key)}
 }
 \value{
 XML document with Google Maps Distance Matrix API response
@@ -43,12 +45,15 @@ Use function \code{\link{mp_get_matrix}} to extract \strong{distance} and \stron
 # Built-in reponse example
 library(xml2)
 doc = as_xml_document(response_matrix)
+
 \dontrun{
+
 # Using 'data.frame' input
 doc = mp_matrix(
   origins = rbind(c(34.81127, 31.89277), c(35.212085, 31.769976)),
   destinations = c(34.781107, 32.085003)
 )
+
 # Using 'character' input
 locations = c("Haifa", "Tel-Aviv", "Jerusalem", "Beer-Sheva")
 doc = mp_matrix(

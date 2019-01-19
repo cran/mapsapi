@@ -12,6 +12,7 @@
 #' @param avoid \code{NULL} (default) or one of: \code{"tolls"}, \code{"highways"}, \code{"ferries"} or \code{"indoor"}
 #' @param region The region code, specified as a ccTLD ("top-level domain") two-character value (e.g. \code{"es"} for Spain) (optional)
 #' @param key Google APIs key (optional)
+#' @param quiet Logical; suppress printing URL for Google Maps API call (e.g. to hide API key)
 #' @return XML document with Google Maps Distance Matrix API response
 #' @note Use function \code{\link{mp_get_matrix}} to extract \strong{distance} and \strong{duration} \code{matrix} objects
 #' @references \url{https://developers.google.com/maps/documentation/distance-matrix/intro}
@@ -20,12 +21,15 @@
 #' # Built-in reponse example
 #' library(xml2)
 #' doc = as_xml_document(response_matrix)
+#'
 #' \dontrun{
+#'
 #' # Using 'data.frame' input
 #' doc = mp_matrix(
 #'   origins = rbind(c(34.81127, 31.89277), c(35.212085, 31.769976)),
 #'   destinations = c(34.781107, 32.085003)
 #' )
+#'
 #' # Using 'character' input
 #' locations = c("Haifa", "Tel-Aviv", "Jerusalem", "Beer-Sheva")
 #' doc = mp_matrix(
@@ -42,7 +46,8 @@ mp_matrix = function(
   departure_time = NULL,
   avoid = NULL,
   region = NULL,
-  key = NULL
+  key = NULL,
+  quiet = FALSE
   ) {
 
   # Checks
@@ -110,6 +115,9 @@ mp_matrix = function(
       key
     )
   }
+
+  # Print URL
+  if(!quiet) message(url)
 
   # Get response
   url = utils::URLencode(url)

@@ -1,7 +1,7 @@
 Package: mapsapi
 Type: Package
 Title: 'sf'-Compatible Interface to 'Google Maps' APIs
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: c(
     person("Michael", "Dorman", email = "dorman@post.bgu.ac.il", role = c("aut", "cre")),
     person("Tom", "Buckley", role = c("ctb")),
@@ -12,16 +12,16 @@ Encoding: UTF-8
 LazyData: true
 Imports: magrittr (>= 1.5), xml2 (>= 1.1.1), sf (>= 0.5-3), bitops (>=
         1.0-6), plyr (>= 1.8.4)
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown, leaflet
 VignetteBuilder: knitr
 URL: https://github.com/michaeldorman/mapsapi/
 BugReports: https://github.com/michaeldorman/mapsapi/issues/
 NeedsCompilation: no
-Packaged: 2019-04-06 13:04:58 UTC; michael
+Packaged: 2019-06-14 07:08:52 UTC; michael
 Author: Michael Dorman [aut, cre],
   Tom Buckley [ctb],
   Alex Dannenberg [ctb]
 Maintainer: Michael Dorman <dorman@post.bgu.ac.il>
 Repository: CRAN
-Date/Publication: 2019-04-06 13:20:03 UTC
+Date/Publication: 2019-06-14 07:30:03 UTC

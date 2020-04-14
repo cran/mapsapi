@@ -4,7 +4,9 @@
 \name{response_directions_transit}
 \alias{response_directions_transit}
 \title{Sample response from Google Maps Directions API}
-\format{A \code{character} vector of length one}
+\format{
+A \code{list} obtained using \code{as_list} on XML response
+}
 \usage{
 response_directions_transit
 }

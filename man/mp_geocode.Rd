@@ -5,7 +5,14 @@
 \alias{mp_geocode}
 \title{Get geocoded coordinates using the Google Maps Geocoding API}
 \usage{
-mp_geocode(addresses, region = NULL, postcode = NULL, bounds = NULL, key)
+mp_geocode(
+  addresses,
+  region = NULL,
+  postcode = NULL,
+  bounds = NULL,
+  key,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{addresses}{Addresses to geocode, as \code{character} vector}
@@ -17,6 +24,8 @@ mp_geocode(addresses, region = NULL, postcode = NULL, bounds = NULL, key)
 \item{bounds}{A preferred bounding box, specified as a numeric vector with four values xmin/ymin/xmax/ymax (in latitude/longitude) representing the coordinates of the southwest and northeast corners, e.g. as returned by function `sf::st_bbox`. This can be a single vector (in which case it is replicated) or a \code{list} of numeric vectors with the same length as \code{addresses} (optional)}
 
 \item{key}{Google APIs key (optional)}
+
+\item{quiet}{Logical; suppress printing geocode request statuses}
 }
 \value{
 \code{list} of XML documents with Google Maps Geocoding API responses, one item per element in \code{addresses}

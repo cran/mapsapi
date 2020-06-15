@@ -1,9 +1,10 @@
 #' Get geocoded coordinates using the Google Maps Geocoding API
 #' @param addresses Addresses to geocode, as \code{character} vector
 #' @param region The region code, specified as a ccTLD ("top-level domain") two-character value (e.g. \code{"es"} for Spain). This can to be a character vector of length 1 (in which case it is replicated) or a character vector with the same length of \code{addresses} (optional)
+#' @param postcode Vector of postal codes to filter the address match by (optional); Note that this is a component filter, which means that for each address, Google will search only within the corresponding postal code if non-missing
 #' @param bounds A preferred bounding box, specified as a numeric vector with four values xmin/ymin/xmax/ymax (in latitude/longitude) representing the coordinates of the southwest and northeast corners, e.g. as returned by function `sf::st_bbox`. This can be a single vector (in which case it is replicated) or a \code{list} of numeric vectors with the same length as \code{addresses} (optional)
 #' @param key Google APIs key (optional)
-#' @param postcode Vector of postal codes to filter the address match by (optional); Note that this is a component filter, which means that for each address, Google will search only within the corresponding postal code if non-missing
+#' @param quiet Logical; suppress printing geocode request statuses
 #' @return \code{list} of XML documents with Google Maps Geocoding API responses, one item per element in \code{addresses}
 #' @note \itemize{
 #' \item Use function \code{\link{mp_get_points}} to extract \strong{locations} as \code{sf} point layer
@@ -67,7 +68,8 @@ mp_geocode = function(
   region = NULL,
   postcode = NULL,
   bounds = NULL,
-  key
+  key,
+  quiet = FALSE
   ) {
 
   # Checks
@@ -162,6 +164,7 @@ mp_geocode = function(
 
       # Get response
       url = utils::URLencode(url)
+      if(!quiet) message(url)
       response[[i]] = xml2::read_xml(url)
 
       # 'status' to print
@@ -175,9 +178,11 @@ mp_geocode = function(
     # Print current progress
     address_char = nchar(addresses[i]); if(is.na(address_char)) address_char = 2
     dots = max(c(1, 40 - address_char))
-    cat(paste0(addresses[i], paste0(rep(".", dots), collapse = "")))
-    if(!is.null(status)) cat(status)
-    cat("\n")
+    if(!quiet) {
+      cat(paste0(addresses[i], paste0(rep(".", dots), collapse = "")))
+      if(!is.null(status)) cat(status)
+      cat("\n")
+    }
 
     # Wait 1 seconds to avoid rate limit (50 requests per minute)
     if(length(addresses > 1)) Sys.sleep(1)

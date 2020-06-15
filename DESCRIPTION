@@ -1,7 +1,7 @@
 Package: mapsapi
 Type: Package
 Title: 'sf'-Compatible Interface to 'Google Maps' APIs
-Version: 0.4.5
+Version: 0.4.6
 Authors@R: c(
     person("Michael", "Dorman", email = "dorman@post.bgu.ac.il", role = c("aut", "cre")),
     person("Tom", "Buckley", role = c("ctb")),
@@ -19,11 +19,11 @@ VignetteBuilder: knitr
 URL: https://github.com/michaeldorman/mapsapi/
 BugReports: https://github.com/michaeldorman/mapsapi/issues/
 NeedsCompilation: no
-Packaged: 2020-04-14 14:37:52 UTC; michael
+Packaged: 2020-06-15 08:13:05 UTC; michael
 Author: Michael Dorman [aut, cre],
   Tom Buckley [ctb],
   Alex Dannenberg [ctb],
   Mihir Bhaskar [ctb]
 Maintainer: Michael Dorman <dorman@post.bgu.ac.il>
 Repository: CRAN
-Date/Publication: 2020-04-14 15:00:02 UTC
+Date/Publication: 2020-06-15 08:40:03 UTC

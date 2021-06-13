@@ -60,11 +60,16 @@
 
 * 'mp_get_points' and 'mp_get_bounds' now also works given unnamed 'list' of documents
 
-## mapsapi 0.4.8
+## mapsapi 0.4.8 (2020-12-17)
 
 * Added 'pkgdown' site
 * Fixed 'mp_get_bounds' when bounds results are empty
 * Fixed 'mp_get_bounds' when more than one response per address
+
+## mapsapi 0.4.9
+
+* Fixed bug in 'mp_matrix' (by Juan P. Fonseca-Zamora)
+* New arguments in 'mp_directions' (by Juan P. Fonseca-Zamora)
 
 ## To do
 

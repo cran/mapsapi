@@ -1,7 +1,7 @@
 Package: mapsapi
 Type: Package
 Title: 'sf'-Compatible Interface to 'Google Maps' APIs
-Version: 0.4.9
+Version: 0.5.0
 Authors@R: c(
     person("Michael", "Dorman", email = "dorman@post.bgu.ac.il", role = c("aut", "cre")),
     person("Tom", "Buckley", role = c("ctb")),
@@ -21,7 +21,7 @@ URL: https://michaeldorman.github.io/mapsapi/,
         https://github.com/michaeldorman/mapsapi/
 BugReports: https://github.com/michaeldorman/mapsapi/issues/
 NeedsCompilation: no
-Packaged: 2021-06-13 10:30:41 UTC; michael
+Packaged: 2021-09-06 09:54:14 UTC; michael
 Author: Michael Dorman [aut, cre],
   Tom Buckley [ctb],
   Alex Dannenberg [ctb],
@@ -29,4 +29,4 @@ Author: Michael Dorman [aut, cre],
   Juan P. Fonseca-Zamora [ctb]
 Maintainer: Michael Dorman <dorman@post.bgu.ac.il>
 Repository: CRAN
-Date/Publication: 2021-06-13 10:50:02 UTC
+Date/Publication: 2021-09-06 10:10:02 UTC

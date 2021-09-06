@@ -1,7 +1,7 @@
-ffe7abc8e48e4aefb425136212cbefa3 *DESCRIPTION
+b5a69b49a5ce42b3b56843dd241bbbcd *DESCRIPTION
 2b68ef7d4f3f35f660f181e38e70fadb *LICENSE
 71e9498546359f6fcc2a120895352ddd *NAMESPACE
-de0df99f7b6e110b60990ed4c1b706df *NEWS.md
+a5dae559b3d15a9bc65d67a9e0badbaa *NEWS.md
 3de14e238fe2a1dbaf1956a6d11f6544 *R/check_inputs.R
 143c8b6db613256d0e8b421f758fac8e *R/data.R
 f57c78737eba06bbe1b3713268aa0786 *R/decode_line.R
@@ -14,9 +14,9 @@ acedab4541bb77e4ab177443e76e002b *R/mp_geocode.R
 bccca1232ff770e02fee4e1135ea47f8 *R/mp_get_points.R
 cce0def34e62d471e2d74e0ad8621274 *R/mp_get_routes.R
 1716874bf41ad3b63b438255eb54100b *R/mp_get_segments.R
-064faa227675860dab9f4cefb3700f01 *R/mp_map.R
+a0d709cef3ea20dc80fee98dc7207ac6 *R/mp_map.R
 b52532b9c007f71a81f5141a9a5b7a90 *R/mp_matrix.R
-16e479c8ea5292e4c752c44951647798 *build/vignette.rds
+0107859abf11ba711c0e84b90570afdd *build/vignette.rds
 ab13ef6f2e98c760c40e28ceb0e9559e *data/response_directions_driving.rda
 8b20b9bfa22563de927db2c9a7851c24 *data/response_directions_transit.rda
 d55af3c00705de4aa998afd177c4cbd2 *data/response_geocode.rda
@@ -24,7 +24,7 @@ d55af3c00705de4aa998afd177c4cbd2 *data/response_geocode.rda
 a3f445b454741104334ba5444772c825 *data/response_matrix.rda
 feff6b46660c7525e64ce96c87ed3a11 *inst/doc/intro.R
 31edb6a15bc95453a6614ede9ec40b2f *inst/doc/intro.Rmd
-fdb01067aa4f2fbfaa0fbae37402a579 *inst/doc/intro.html
+f7c9ffddb70ce28a308288d7ae3f49f2 *inst/doc/intro.html
 dd08e5370a05fa207d66479e0d0764ff *man/mp_directions.Rd
 1b19d2282deafdb702a59a8d8c435f63 *man/mp_geocode.Rd
 eac00e9696f59a692a76dc58e94f1654 *man/mp_get_bounds.Rd

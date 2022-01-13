@@ -71,12 +71,20 @@
 * Fixed bug in 'mp_matrix' (by Juan P. Fonseca-Zamora)
 * New arguments in 'mp_directions' (by Juan P. Fonseca-Zamora)
 
-## mapsapi 0.5.0
+## mapsapi 0.5.0 (2021-09-06)
 
 * Corrected download method in 'mp_map' to avoid corrupted PNG (on Windows)
 
+## mapsapi 0.5.3 
+
+* Added 'timeout' option in 'mp_geocode'
+* Added 'transit_mode' parameter in 'mp_matrix'
+* Added 'language' parameter in 'mp_directions'
+
 ## To do
 
+* Switch to native pipe and remove 'magrittr' dependency
+* Add timeout option in all functions (similarly to 'mp_geocode')
 * Allow selecting >1 'avoid' options in 'mp_directions'
-* Static maps from other sources (?)
+* Static maps from sources other than Google Maps (?)
 

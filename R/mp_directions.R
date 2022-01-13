@@ -21,6 +21,7 @@
 #' @param traffic_model The traffic model, one of: \code{"best_guess"} (the default), \code{"pessimistic"}, \code{"optimistic"}. The \code{traffic_model} parameter is only taken into account when \code{departure_time} is specified!
 #' @param transit_mode Transit preferred mode, one or more of: \code{"bus"}, \code{"subway"}, \code{"train"} or \code{"tram"}
 #' @param transit_routing_preference Transit route preference. \code{NA} (default, means no preference) or one of: \code{"less_walking"} or \code{"fewer_transfers"}
+#' @param language The language in which to return directions. See \url{https://developers.google.com/maps/faq#languagesupport} for list of language codes.
 #' @param key Google APIs key
 #' @param quiet Logical; suppress printing URL for Google Maps API call (e.g. to hide API key)
 #' @return XML document with Google Maps Directions API response
@@ -54,7 +55,7 @@
 #' library(sf)
 #' doc = mp_directions(
 #'   origin = "Beer-Sheva",
-#'   destination = c(34.781107, 32.085003) %>% st_point %>% st_sfc(crs = 4326),
+#'   destination = c(34.781107, 32.085003) |> st_point() |> st_sfc(crs = 4326),
 #'   alternatives = TRUE,
 #'   key = key
 #' )
@@ -97,8 +98,9 @@ mp_directions = function(
   avoid = c(NA, "tolls", "highways", "ferries", "indoor"),
   region = NULL,
   traffic_model = c("best_guess", "pessimistic", "optimistic"),
-  transit_mode = c ("bus", "subway", "train", "tram"),
+  transit_mode = c("bus", "subway", "train", "tram"),
   transit_routing_preference = c(NA, "less_walking", "fewer_transfers"),
+  language = NULL,
   key,
   quiet = FALSE
   ) {
@@ -107,7 +109,7 @@ mp_directions = function(
   mode = match.arg(mode)
   avoid = match.arg(avoid)
   traffic_model = match.arg(traffic_model)
-  transit_mode = match.arg(transit_mode,several.ok = TRUE)
+  transit_mode = match.arg(transit_mode, several.ok = TRUE)
   transit_routing_preference = match.arg(transit_routing_preference)
   .check_posix_time(arrival_time)
   .check_posix_time(departure_time)
@@ -186,6 +188,7 @@ mp_directions = function(
 
   # Add 'transit_mode'
   if(mode == "transit") {
+
     url = paste0(
       url,
       "&transit_mode=",
@@ -200,6 +203,16 @@ mp_directions = function(
         transit_routing_preference
       )
     }
+
+  }
+
+  # Add 'language'
+  if(!is.null(language)) {
+    url = paste0(
+      url,
+      "&language=",
+      language
+    )
   }
   
   # Add key
@@ -219,5 +232,4 @@ mp_directions = function(
   xml2::read_xml(url)
 
 }
-
 

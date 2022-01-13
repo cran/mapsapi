@@ -1,7 +1,7 @@
 Package: mapsapi
 Type: Package
 Title: 'sf'-Compatible Interface to 'Google Maps' APIs
-Version: 0.5.0
+Version: 0.5.3
 Authors@R: c(
     person("Michael", "Dorman", email = "dorman@post.bgu.ac.il", role = c("aut", "cre")),
     person("Tom", "Buckley", role = c("ctb")),
@@ -12,8 +12,8 @@ Description: Interface to the 'Google Maps' APIs: (1) routing directions based o
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.5.0)
-Imports: magrittr, xml2, sf, bitops, stars, RgoogleMaps
+Depends: R (>= 4.1.0)
+Imports: xml2, sf, bitops, stars, RgoogleMaps, httr
 RoxygenNote: 7.1.1
 Suggests: knitr, rmarkdown, leaflet, ggplot2, dplyr
 VignetteBuilder: knitr
@@ -21,7 +21,7 @@ URL: https://michaeldorman.github.io/mapsapi/,
         https://github.com/michaeldorman/mapsapi/
 BugReports: https://github.com/michaeldorman/mapsapi/issues/
 NeedsCompilation: no
-Packaged: 2021-09-06 09:54:14 UTC; michael
+Packaged: 2022-01-13 12:41:44 UTC; michael
 Author: Michael Dorman [aut, cre],
   Tom Buckley [ctb],
   Alex Dannenberg [ctb],
@@ -29,4 +29,4 @@ Author: Michael Dorman [aut, cre],
   Juan P. Fonseca-Zamora [ctb]
 Maintainer: Michael Dorman <dorman@post.bgu.ac.il>
 Repository: CRAN
-Date/Publication: 2021-09-06 10:10:02 UTC
+Date/Publication: 2022-01-13 13:22:41 UTC
